@@ -9,7 +9,7 @@ module ApplicationHelper
 
   def my_render_select(product)
     metafield = product.metafields.find{|mf| mf.namespace = "testapp" }
-    html = ""
+    html = "<option value='0'> Please Choose </option>"
     ["A", "B", "C"].each do |opt|
       if metafield && metafield.value == opt
         html << "<option selected='selected' value='#{opt}'>#{opt}</option>"
