@@ -1,0 +1,26 @@
+%h1 Products
+%span12
+  %table.table.table-condensed.table-stripped.table-bordered
+    %thead
+      %tr
+        %td Title
+        %td Price
+        %td Type
+        %td Vendor
+        %td Classify
+    %tbody
+      =form_tag "/metafields", method:"POST" do
+        -@products.each do |product|
+          %tr
+            =hidden_field_tag 'product_ids[]', product.id
+            %td=product.title
+            %td=product.price_range
+            %td=product.product_type
+            %td=product.vendor
+            %td
+              %select{name:"class_#{product.id}"}
+                =my_render_select(product).html_safe
+        %tr
+          %td{colspan:5}
+            =submit_tag "Save"
+          
